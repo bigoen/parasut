@@ -1,0 +1,27 @@
+{
+	"name": "bigoen/parasut",
+	"type": "php",
+	"description": "Parasut api for php applications.",
+	"license": "LGPL-3.0",
+	"authors": [
+		{
+			"name": "Şafak Saylam",
+			"homepage": "https://safaksaylam.com",
+			"email": "safak@bigoen.com"
+		}
+	],
+	"require": {
+		"php": "^7.4",
+		"ext-json": "*",
+		"symfony/http-client": "^4.0 || ^5.0"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "^7.3"
+	},
+	"prefer-stable": true,
+	"autoload": {
+		"psr-4": {
+			"Bigoen\\Parasut\\": "src/"
+		}
+	}
+}
