@@ -61,10 +61,13 @@ class Contact implements ObjectInterface
 
             return $object;
         }
-        if (!isset($arr['data'])) {
+        if (!isset($arr['data']) && !isset($arr['id'])) {
             return null;
+        } elseif (isset($arr['id'])) {
+            $data = $arr;
+        } else {
+            $data = $arr['data'];
         }
-        $data = $arr['data'];
         $object->id = (int) $data['id'];
         // attributes.
         $attributes = $data['attributes'];
