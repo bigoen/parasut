@@ -9,7 +9,7 @@ use DateTimeInterface;
 /**
  * @author Şafak Saylam <safak@bigoen.com>
  */
-class ContactDebitTransactionInput
+class ContactTransactionInput
 {
     use ObjectTrait;
 

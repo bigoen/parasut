@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Bigoen\Parasut\Services;
 
 use Bigoen\Parasut\Model\Contact;
-use Bigoen\Parasut\Model\ContactDebitTransactionInput;
-use Bigoen\Parasut\Model\ContactDebitTransactionOutput;
+use Bigoen\Parasut\Model\ContactTransactionInput;
+use Bigoen\Parasut\Model\ContactTransactionOutput;
 use Bigoen\Parasut\Model\Pagination;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
@@ -188,10 +188,45 @@ class ContactService extends AbstractService
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function postObjectContactDebitTransaction(ContactDebitTransactionInput $input): ?ContactDebitTransactionOutput
+    public function postObjectContactDebitTransaction(ContactTransactionInput $input): ?ContactTransactionOutput
     {
-        return ContactDebitTransactionOutput::new(
+        return ContactTransactionOutput::new(
             $this->postContactDebitTransaction($input->contactId, $input->toArray())
+        );
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws DecodingExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
+     */
+    public function postContactCreditTransaction(int $contactId, array $data): array
+    {
+        return $this->httpClient->request(
+            'POST',
+            $this->createUrl("contacts/{$contactId}/contact_credit_transactions"),
+            [
+                'json' => [
+                    'data' => $data,
+                ],
+                'auth_bearer' => $this->accessToken,
+            ]
+        )->toArray($this->throw);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws DecodingExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
+     */
+    public function postObjectContactCreditTransaction(ContactTransactionInput $input): ?ContactTransactionOutput
+    {
+        return ContactTransactionOutput::new(
+            $this->postContactCreditTransaction($input->contactId, $input->toArray())
         );
     }
 }
