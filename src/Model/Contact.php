@@ -12,28 +12,34 @@ use DateTimeInterface;
  */
 class Contact
 {
-    public int $id;
-    public DateTimeInterface $createdAt;
-    public DateTimeInterface $updatedAt;
-    public string $contactType;
+    const CONTACT_TYPE_PERSON = 'person';
+    const CONTACT_TYPE_COMPANY = 'company';
+
+    const ACCOUNT_TYPE_CUSTOMER = 'customer';
+    const ACCOUNT_TYPE_SUPPLIER = 'supplier';
+
+    public ?int $id = null;
+    public ?DateTimeInterface $createdAt = null;
+    public ?DateTimeInterface $updatedAt = null;
+    public ?string $contactType = null;
     public ?string $name = null;
     public ?string $email = null;
     public ?string $shortName = null;
-    public float $balance;
-    public float $trlBalance;
-    public float $usdBalance;
-    public float $eurBalance;
-    public float $gbpBalance;
+    public ?float $balance = null;
+    public ?float $trlBalance = null;
+    public ?float $usdBalance = null;
+    public ?float $eurBalance = null;
+    public ?float $gbpBalance = null;
     public ?string $taxNumber = null;
     public ?string $taxOffice = null;
-    public bool $archived;
-    public string $accountType;
+    public ?bool $archived = null;
+    public ?string $accountType = null;
     public ?string $city = null;
     public ?string $district = null;
     public ?string $address = null;
     public ?string $phone = null;
     public ?string $fax = null;
-    public bool $isAbroad;
+    public ?bool $isAbroad = null;
     public ?int $termDays = null;
     public array $invoicingPreferences = [];
     public ?int $sharingsCount = null;
@@ -43,8 +49,8 @@ class Contact
     public ?string $sharingPreviewUrl = null;
     public ?string $sharingPreviewPath = null;
     public ?string $paymentReminderPreviewUrl = null;
-    public array $relationships;
-    public array $meta;
+    public ?array $relationships = null;
+    public ?array $meta = null;
 
     public static function new(array $arr): self
     {
@@ -88,6 +94,32 @@ class Contact
         $object->meta = $arr['meta'];
 
         return $object;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->id,
+            'type' => 'contacts',
+            'attributes' => [
+                'contact_type' => $this->contactType,
+                'name' => $this->name,
+                'email' => $this->email,
+                'short_name' => $this->shortName,
+                'tax_number' => $this->taxNumber,
+                'tax_office' => $this->taxOffice,
+                'archived' => $this->archived,
+                'account_type' => $this->accountType,
+                'city' => $this->city,
+                'district' => $this->district,
+                'address' => $this->address,
+                'phone' => $this->phone,
+                'fax' => $this->fax,
+                'iban' => $this->iban,
+                'is_abroad' => $this->isAbroad,
+            ],
+            'relationships' => $this->relationships,
+        ];
     }
 
     public static function createDateTime(string $dateTime): DateTimeInterface
