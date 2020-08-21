@@ -52,6 +52,7 @@ class Contact implements ObjectInterface
     public ?string $paymentReminderPreviewUrl = null;
     public ?array $relationships = null;
     public ?array $meta = null;
+    public ?array $included = null;
 
     public static function new(array $arr): ?self
     {
@@ -105,6 +106,8 @@ class Contact implements ObjectInterface
         // set relationships.
         $object->relationships = $data['relationships'];
         $object->meta = $data['meta'];
+        // set included.
+        $object->included = $arr['included'] ?? null;
 
         return $object;
     }

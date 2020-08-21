@@ -34,6 +34,7 @@ class ContactTransactionOutput
     public ?DateTimeInterface $bankSyncDatetime = null;
     public ?array $relationships = null;
     public ?array $meta = null;
+    public ?array $included = null;
 
     public static function new(array $arr): ?self
     {
@@ -71,6 +72,8 @@ class ContactTransactionOutput
         // set relationships.
         $object->relationships = $data['relationships'];
         $object->meta = $data['meta'];
+        // set included.
+        $object->included = $arr['included'] ?? null;
 
         return $object;
     }
