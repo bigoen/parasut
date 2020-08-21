@@ -32,6 +32,7 @@ abstract class AbstractService
 
     protected string $accessToken;
     protected string $refreshToken;
+    protected bool $throw = false;
 
     protected string $clientId;
     protected string $clientSecret;
@@ -127,5 +128,12 @@ abstract class AbstractService
     protected static function createExpiresAt(int $seconds): ?DateTimeInterface
     {
         return (new DateTime())->modify("+{$seconds} seconds");
+    }
+
+    public function trueThrow(): self
+    {
+        $this->throw = true;
+
+        return $this;
     }
 }

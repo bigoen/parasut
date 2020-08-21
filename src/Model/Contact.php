@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace Bigoen\Parasut\Model;
 
-use DateTime;
 use DateTimeInterface;
 
 /**
  * @author Şafak Saylam <safak@bigoen.com>
  */
-class Contact
+class Contact implements ObjectInterface
 {
+    use ObjectTrait;
+
     const CONTACT_TYPE_PERSON = 'person';
     const CONTACT_TYPE_COMPANY = 'company';
 
@@ -41,9 +42,9 @@ class Contact
     public ?string $fax = null;
     public ?bool $isAbroad = null;
     public ?int $termDays = null;
-    public array $invoicingPreferences = [];
+    public ?array $invoicingPreferences = null;
     public ?int $sharingsCount = null;
-    public array $ibans = [];
+    public ?array $ibans = null;
     public ?string $exchangeRateType = null;
     public ?string $iban = null;
     public ?string $sharingPreviewUrl = null;
@@ -52,12 +53,21 @@ class Contact
     public ?array $relationships = null;
     public ?array $meta = null;
 
-    public static function new(array $arr): self
+    public static function new(array $arr): ?self
     {
-        $object = (new self());
-        $object->id = (int) $arr['id'];
+        $object = new self();
+        if (isset($arr['errors'])) {
+            $object->errors = $arr['errors'];
+
+            return $object;
+        }
+        if (!isset($arr['data'])) {
+            return null;
+        }
+        $data = $arr['data'];
+        $object->id = (int) $data['id'];
         // attributes.
-        $attributes = $arr['attributes'];
+        $attributes = $data['attributes'];
         $object->createdAt = self::createDateTime($attributes['created_at']);
         $object->updatedAt = self::createDateTime($attributes['updated_at']);
         $object->contactType = $attributes['contact_type'];
@@ -82,23 +92,23 @@ class Contact
         $object->termDays = $attributes['term_days'];
         $object->invoicingPreferences = $attributes['invoicing_preferences'];
         // other values.
-        $object->sharingsCount = $arr['sharings_count'] ?? null;
-        $object->ibans = $arr['ibans'] ?? [];
-        $object->exchangeRateType = $arr['exchange_rate_type'] ?? null;
-        $object->iban = $arr['iban'] ?? null;
-        $object->sharingPreviewUrl = $arr['sharing_preview_url'] ?? null;
-        $object->sharingPreviewPath = $arr['sharing_preview_path'] ?? null;
-        $object->paymentReminderPreviewUrl = $arr['payment_reminder_preview_url'] ?? null;
+        $object->sharingsCount = $data['sharings_count'] ?? null;
+        $object->ibans = $data['ibans'] ?? [];
+        $object->exchangeRateType = $data['exchange_rate_type'] ?? null;
+        $object->iban = $data['iban'] ?? null;
+        $object->sharingPreviewUrl = $data['sharing_preview_url'] ?? null;
+        $object->sharingPreviewPath = $data['sharing_preview_path'] ?? null;
+        $object->paymentReminderPreviewUrl = $data['payment_reminder_preview_url'] ?? null;
         // set relationships.
-        $object->relationships = $arr['relationships'];
-        $object->meta = $arr['meta'];
+        $object->relationships = $data['relationships'];
+        $object->meta = $data['meta'];
 
         return $object;
     }
 
     public function toArray(): array
     {
-        return [
+        return self::clearToArray([
             'id' => $this->id,
             'type' => 'contacts',
             'attributes' => [
@@ -119,11 +129,6 @@ class Contact
                 'is_abroad' => $this->isAbroad,
             ],
             'relationships' => $this->relationships,
-        ];
-    }
-
-    public static function createDateTime(string $dateTime): DateTimeInterface
-    {
-        return DateTime::createFromFormat(DateTime::RFC3339_EXTENDED, $dateTime);
+        ]);
     }
 }
