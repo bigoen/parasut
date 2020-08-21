@@ -87,12 +87,15 @@ class ContactService extends AbstractService
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function postContact(array $data): array
+    public function postContact(array $data, ?string $includeQueries = null): array
     {
         return $this->httpClient->request(
             'POST',
             $this->createUrl('contacts'),
             [
+                'query' => [
+                    'include' => $includeQueries,
+                ],
                 'json' => [
                     'data' => $data,
                 ],
@@ -108,9 +111,9 @@ class ContactService extends AbstractService
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function postObjectContact(Contact $contact): ?Contact
+    public function postObjectContact(Contact $contact, ?string $includeQueries = null): ?Contact
     {
-        return Contact::new($this->postContact($contact->toArray()));
+        return Contact::new($this->postContact($contact->toArray(), $includeQueries));
     }
 
     /**
@@ -120,12 +123,15 @@ class ContactService extends AbstractService
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function putContact(int $id, array $data): array
+    public function putContact(int $id, array $data, ?string $includeQueries = null): array
     {
         return $this->httpClient->request(
             'PUT',
             $this->createUrl("contacts/{$id}"),
             [
+                'query' => [
+                    'include' => $includeQueries,
+                ],
                 'json' => [
                     'data' => $data,
                 ],
@@ -141,9 +147,9 @@ class ContactService extends AbstractService
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function putObjectContact(Contact $contact): ?Contact
+    public function putObjectContact(Contact $contact, ?string $includeQueries = null): ?Contact
     {
-        return Contact::new($this->putContact($contact->id, $contact->toArray()));
+        return Contact::new($this->putContact($contact->id, $contact->toArray(), $includeQueries));
     }
 
     /**
@@ -167,12 +173,15 @@ class ContactService extends AbstractService
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function postContactDebitTransaction(int $contactId, array $data): array
+    public function postContactDebitTransaction(int $contactId, array $data, ?string $includeQueries = null): array
     {
         return $this->httpClient->request(
             'POST',
             $this->createUrl("contacts/{$contactId}/contact_debit_transactions"),
             [
+                'query' => [
+                    'include' => $includeQueries,
+                ],
                 'json' => [
                     'data' => $data,
                 ],
@@ -188,10 +197,10 @@ class ContactService extends AbstractService
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function postObjectContactDebitTransaction(ContactTransactionInput $input): ?ContactTransactionOutput
+    public function postObjectContactDebitTransaction(ContactTransactionInput $input, ?string $includeQueries = null): ?ContactTransactionOutput
     {
         return ContactTransactionOutput::new(
-            $this->postContactDebitTransaction($input->contactId, $input->toArray())
+            $this->postContactDebitTransaction($input->contactId, $input->toArray(), $includeQueries)
         );
     }
 
@@ -202,12 +211,15 @@ class ContactService extends AbstractService
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function postContactCreditTransaction(int $contactId, array $data): array
+    public function postContactCreditTransaction(int $contactId, array $data, ?string $includeQueries = null): array
     {
         return $this->httpClient->request(
             'POST',
             $this->createUrl("contacts/{$contactId}/contact_credit_transactions"),
             [
+                'query' => [
+                    'include' => $includeQueries,
+                ],
                 'json' => [
                     'data' => $data,
                 ],
@@ -223,10 +235,10 @@ class ContactService extends AbstractService
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function postObjectContactCreditTransaction(ContactTransactionInput $input): ?ContactTransactionOutput
+    public function postObjectContactCreditTransaction(ContactTransactionInput $input, ?string $includeQueries = null): ?ContactTransactionOutput
     {
         return ContactTransactionOutput::new(
-            $this->postContactCreditTransaction($input->contactId, $input->toArray())
+            $this->postContactCreditTransaction($input->contactId, $input->toArray(), $includeQueries)
         );
     }
 }
