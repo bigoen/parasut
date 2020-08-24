@@ -10,6 +10,7 @@ namespace Bigoen\Parasut\Model;
 class Pagination
 {
     public ?array $data = null;
+    public ?array $errors = null;
     public ?array $links = null;
     public ?array $meta = null;
     public ?array $included = null;
@@ -17,6 +18,11 @@ class Pagination
     public static function new(array $arr, string $className, string $staticNewFunction = 'new'): Pagination
     {
         $object = new self();
+        if (isset($arr['errors'])) {
+            $object->errors = $arr['errors'];
+
+            return $object;
+        }
         $object->data = array_map(fn (array $value) => $className::$staticNewFunction($value), $arr['data']);
         $object->links = $arr['links'];
         $object->meta = $arr['meta'];
