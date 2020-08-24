@@ -1,3 +1,6 @@
 Parasut Php SDK
 ==
-Read only for now.
+Install:
+```
+composer require bigoen/parasut
+```
