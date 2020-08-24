@@ -57,12 +57,15 @@ class ContactService extends AbstractService
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function getContact(int $id): array
+    public function getContact(int $id, ?string $includeQueries = null): array
     {
         return $this->httpClient->request(
             'GET',
             $this->createUrl("contacts/{$id}"),
             [
+                'query' => [
+                    'include' => $includeQueries,
+                ],
                 'auth_bearer' => $this->accessToken,
             ]
         )->toArray($this->throw);
@@ -75,9 +78,9 @@ class ContactService extends AbstractService
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function getObjectContact(int $id): ?Contact
+    public function getObjectContact(int $id, ?string $includeQueries = null): ?Contact
     {
-        return Contact::new($this->getContact($id));
+        return Contact::new($this->getContact($id, $includeQueries));
     }
 
     /**

@@ -56,12 +56,15 @@ class SalesInvoiceService extends AbstractService
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function getSalesInvoice(int $id): array
+    public function getSalesInvoice(int $id, ?string $includeQueries = null): array
     {
         return $this->httpClient->request(
             'GET',
             $this->createUrl("sales_invoices/{$id}"),
             [
+                'query' => [
+                    'include' => $includeQueries,
+                ],
                 'auth_bearer' => $this->accessToken,
             ],
         )->toArray($this->throw);
@@ -74,9 +77,9 @@ class SalesInvoiceService extends AbstractService
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function getObjectSalesInvoice(int $id): ?SalesInvoice
+    public function getObjectSalesInvoice(int $id, ?string $includeQueries = null): ?SalesInvoice
     {
-        return SalesInvoice::new($this->getSalesInvoice($id));
+        return SalesInvoice::new($this->getSalesInvoice($id, $includeQueries));
     }
 
     /**
