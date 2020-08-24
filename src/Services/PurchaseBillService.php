@@ -278,7 +278,7 @@ class PurchaseBillService extends AbstractService
     public function postObjectPurchaseBillPayment(PurchaseBillPayment $payment, ?string $includeQueries = null): ?PurchaseBillPayment
     {
         return PurchaseBillPayment::new(
-            $this->postPurchaseBillPayment($payment->salesInvoiceId, $payment->toArray(), $includeQueries)
+            $this->postPurchaseBillPayment($payment->purchaseBillId, $payment->toArray(), $includeQueries)
         );
     }
 

@@ -14,7 +14,7 @@ class PurchaseBillPayment implements ObjectInterface
     use ObjectTrait;
 
     public ?int $id = null;
-    public ?int $salesInvoiceId = null;
+    public ?int $purchaseBillId = null;
     public ?int $accountId = null;
     public ?DateTimeInterface $createdAt = null;
     public ?DateTimeInterface $updatedAt = null;
