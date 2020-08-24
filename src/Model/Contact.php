@@ -13,12 +13,6 @@ class Contact implements ObjectInterface
 {
     use ObjectTrait;
 
-    const CONTACT_TYPE_PERSON = 'person';
-    const CONTACT_TYPE_COMPANY = 'company';
-
-    const ACCOUNT_TYPE_CUSTOMER = 'customer';
-    const ACCOUNT_TYPE_SUPPLIER = 'supplier';
-
     public ?int $id = null;
     public ?DateTimeInterface $createdAt = null;
     public ?DateTimeInterface $updatedAt = null;

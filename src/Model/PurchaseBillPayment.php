@@ -9,7 +9,7 @@ use DateTimeInterface;
 /**
  * @author Şafak Saylam <safak@bigoen.com>
  */
-class SalesInvoicePayment implements ObjectInterface
+class PurchaseBillPayment implements ObjectInterface
 {
     use ObjectTrait;
 
