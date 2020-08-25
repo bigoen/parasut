@@ -13,6 +13,7 @@ class Relationship implements ObjectInterface
 
     const FILTERS_DETAIL_RELATIONS = [
         'sales_invoice_details',
+        'purchase_bill_details',
     ];
 
     public ?int $id = null;
