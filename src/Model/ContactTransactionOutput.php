@@ -73,7 +73,9 @@ class ContactTransactionOutput
         $object->relationships = $data['relationships'];
         $object->meta = $data['meta'];
         // set included.
-        $object->included = $arr['included'] ?? null;
+        if (isset($arr['included'])) {
+            $object = RelationshipsConverter::newFromObject($object, $arr);
+        }
 
         return $object;
     }

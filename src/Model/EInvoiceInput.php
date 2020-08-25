@@ -35,7 +35,7 @@ class EInvoiceInput
                 'scenario' => $this->scenario,
                 'to' => $this->to,
             ],
-            'relationships' => $this->relationships,
+            'relationships' => RelationshipsConverter::toArray($this->relationships),
         ]);
     }
 }

@@ -62,7 +62,9 @@ class EArchiveOutput
         $object->relationships = $attributes['relationships'];
         $object->meta = $attributes['meta'];
         // set included.
-        $object->included = $arr['included'] ?? null;
+        if (isset($arr['included'])) {
+            $object = RelationshipsConverter::newFromObject($object, $arr);
+        }
 
         return $object;
     }

@@ -101,7 +101,9 @@ class Contact implements ObjectInterface
         $object->relationships = $data['relationships'];
         $object->meta = $data['meta'];
         // set included.
-        $object->included = $arr['included'] ?? null;
+        if (isset($arr['included'])) {
+            $object = RelationshipsConverter::newFromObject($object, $arr);
+        }
 
         return $object;
     }
@@ -128,7 +130,7 @@ class Contact implements ObjectInterface
                 'iban' => $this->iban,
                 'is_abroad' => $this->isAbroad,
             ],
-            'relationships' => $this->relationships,
+            'relationships' => RelationshipsConverter::toArray($this->relationships),
         ]);
     }
 }

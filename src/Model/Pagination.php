@@ -27,7 +27,9 @@ class Pagination
         $object->links = $arr['links'];
         $object->meta = $arr['meta'];
         // set included.
-        $object->included = $arr['included'] ?? null;
+        if (isset($arr['included'])) {
+            $object = RelationshipsConverter::newFromPagination($object, $arr);
+        }
 
         return $object;
     }

@@ -123,7 +123,9 @@ class PurchaseBill implements ObjectInterface
         $object->relationships = $data['relationships'];
         $object->meta = $data['meta'];
         // set included.
-        $object->included = $arr['included'] ?? null;
+        if (isset($arr['included'])) {
+            $object = RelationshipsConverter::newFromObject($object, $arr);
+        }
 
         return $object;
     }
@@ -146,7 +148,7 @@ class PurchaseBill implements ObjectInterface
                 'invoice_discount_type' => $this->invoiceDiscountType,
                 'invoice_discount' => $this->invoiceDiscount,
             ],
-            'relationships' => $this->relationships,
+            'relationships' => RelationshipsConverter::toArray($this->relationships),
         ]);
     }
 
@@ -166,7 +168,7 @@ class PurchaseBill implements ObjectInterface
                 'net_total' => $this->netTotal,
                 'total_vat' => $this->totalVat,
             ],
-            'relationships' => $this->relationships,
+            'relationships' => RelationshipsConverter::toArray($this->relationships),
         ]);
     }
 }

@@ -35,7 +35,7 @@ class EArchiveInput
                 'internet_sale' => $this->internetSale,
                 'shipment' => $this->shipment,
             ],
-            'relationships' => $this->relationships,
+            'relationships' => RelationshipsConverter::toArray($this->relationships),
         ]);
     }
 }
