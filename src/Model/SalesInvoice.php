@@ -155,23 +155,6 @@ class SalesInvoice implements ObjectInterface
         return $object;
     }
 
-    public function addDetail(SalesInvoiceDetail $detail): self
-    {
-        $this->relationships['details'][] = $detail->toArray();
-
-        return $this;
-    }
-
-    public function removeDetail(SalesInvoiceDetail $detail): self
-    {
-        $key = array_search($detail, $this->relationships['details'], true);
-        if ($key !== false) {
-            unset($this->relationships['details'][$key]);
-        }
-
-        return $this;
-    }
-
     public function toArray(): array
     {
         return self::clearToArray([
