@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Bigoen\Parasut\Services;
 
-use Bigoen\Parasut\Model\ItemCategory;
+use Bigoen\Parasut\Model\Tag;
 use Bigoen\Parasut\Model\Pagination;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
@@ -15,7 +15,7 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 /**
  * @author Şafak Saylam <safak@bigoen.com>
  */
-class ItemCategoryService extends AbstractService
+class TagService extends AbstractService
 {
     /**
      * @throws ClientExceptionInterface
@@ -24,11 +24,11 @@ class ItemCategoryService extends AbstractService
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function getItemCategories(array $queries = []): array
+    public function getTags(array $queries = []): array
     {
         return $this->httpClient->request(
             'GET',
-            $this->createUrl('item_categories'),
+            $this->createUrl('tags'),
             [
                 'query' => $queries,
                 'auth_bearer' => $this->accessToken,
@@ -43,9 +43,9 @@ class ItemCategoryService extends AbstractService
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function getObjectItemCategories(array $queries = []): Pagination
+    public function getObjectTags(array $queries = []): Pagination
     {
-        return Pagination::new($this->getItemCategories($queries), ItemCategory::class);
+        return Pagination::new($this->getTags($queries), Tag::class);
     }
 
     /**
@@ -55,15 +55,12 @@ class ItemCategoryService extends AbstractService
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function getItemCategory(int $id, ?string $includeQueries = null): array
+    public function getTag(int $id): array
     {
         return $this->httpClient->request(
             'GET',
-            $this->createUrl("item_categories/{$id}"),
+            $this->createUrl("tags/{$id}"),
             [
-                'query' => [
-                    'include' => $includeQueries,
-                ],
                 'auth_bearer' => $this->accessToken,
             ]
         )->toArray($this->throw);
@@ -76,9 +73,9 @@ class ItemCategoryService extends AbstractService
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function getObjectItemCategory(int $id, ?string $includeQueries = null): ?ItemCategory
+    public function getObjectTag(int $id): ?Tag
     {
-        return ItemCategory::new($this->getItemCategory($id, $includeQueries));
+        return Tag::new($this->getTag($id));
     }
 
     /**
@@ -88,15 +85,12 @@ class ItemCategoryService extends AbstractService
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function postItemCategory(array $data, ?string $includeQueries = null): array
+    public function postTag(array $data): array
     {
         return $this->httpClient->request(
             'POST',
-            $this->createUrl('item_categories'),
+            $this->createUrl('tags'),
             [
-                'query' => [
-                    'include' => $includeQueries,
-                ],
                 'json' => [
                     'data' => $data,
                 ],
@@ -112,9 +106,9 @@ class ItemCategoryService extends AbstractService
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function postObjectItemCategory(ItemCategory $itemCategory, ?string $includeQueries = null): ?ItemCategory
+    public function postObjectTag(Tag $tag): ?Tag
     {
-        return ItemCategory::new($this->postItemCategory($itemCategory->toArray(), $includeQueries));
+        return Tag::new($this->postTag($tag->toArray()));
     }
 
     /**
@@ -124,15 +118,12 @@ class ItemCategoryService extends AbstractService
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function putItemCategory(int $id, array $data, ?string $includeQueries = null): array
+    public function putTag(int $id, array $data): array
     {
         return $this->httpClient->request(
             'PUT',
-            $this->createUrl("item_categories/{$id}"),
+            $this->createUrl("tags/{$id}"),
             [
-                'query' => [
-                    'include' => $includeQueries,
-                ],
                 'json' => [
                     'data' => $data,
                 ],
@@ -148,19 +139,19 @@ class ItemCategoryService extends AbstractService
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function putObjectItemCategory(ItemCategory $itemCategory, ?string $includeQueries = null): ?ItemCategory
+    public function putObjectTag(Tag $tag): ?Tag
     {
-        return ItemCategory::new($this->putItemCategory($itemCategory->id, $itemCategory->toArray(), $includeQueries));
+        return Tag::new($this->putTag($tag->id, $tag->toArray()));
     }
 
     /**
      * @throws TransportExceptionInterface
      */
-    public function deleteItemCategory(int $id): bool
+    public function deleteTag(int $id): bool
     {
         return 204 === $this->httpClient->request(
             'DELETE',
-                $this->createUrl("item_categories/{$id}"),
+                $this->createUrl("tags/{$id}"),
                 [
                     'auth_bearer' => $this->accessToken,
                 ]
