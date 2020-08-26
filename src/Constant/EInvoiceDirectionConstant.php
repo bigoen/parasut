@@ -11,4 +11,12 @@ class EInvoiceDirectionConstant
 {
     const INBOUND = 'inbound';
     const OUTBOUND = 'outbound';
+
+    public static function getDirections(): array
+    {
+        return [
+            self::INBOUND,
+            self::OUTBOUND,
+        ];
+    }
 }

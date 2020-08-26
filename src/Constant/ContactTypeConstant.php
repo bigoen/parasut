@@ -11,4 +11,12 @@ class ContactTypeConstant
 {
     const PERSON = 'person';
     const COMPANY = 'company';
+
+    public static function getTypes(): array
+    {
+        return [
+            self::PERSON,
+            self::COMPANY,
+        ];
+    }
 }

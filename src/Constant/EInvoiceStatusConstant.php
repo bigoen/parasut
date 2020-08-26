@@ -12,4 +12,13 @@ class EInvoiceStatusConstant
     const WAITING = 'waiting';
     const FAILED = 'failed';
     const SUCCESSFUL = 'successful';
+
+    public static function getStatus(): array
+    {
+        return [
+            self::WAITING,
+            self::FAILED,
+            self::SUCCESSFUL,
+        ];
+    }
 }

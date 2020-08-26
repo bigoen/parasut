@@ -13,4 +13,14 @@ class CurrencyConstant
     const USD = 'USD';
     const EUR = 'EUR';
     const GBP = 'GBP';
+
+    public static function getCurrencies(): array
+    {
+        return [
+            self::TRL,
+            self::USD,
+            self::EUR,
+            self::GBP,
+        ];
+    }
 }

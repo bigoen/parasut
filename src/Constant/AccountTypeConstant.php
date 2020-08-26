@@ -11,4 +11,12 @@ class AccountTypeConstant
 {
     const CUSTOMER = 'customer';
     const SUPPLIER = 'supplier';
+
+    public static function getTypes(): array
+    {
+        return [
+            self::CUSTOMER,
+            self::SUPPLIER,
+        ];
+    }
 }

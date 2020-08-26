@@ -7,8 +7,16 @@ namespace Bigoen\Parasut\Constant;
 /**
  * @author Şafak Saylam <safak@bigoen.com>
  */
-class DiscountType
+class DiscountTypeConstant
 {
     const PERCENTAGE = 'percentage';
     const AMOUNT = 'amount';
+
+    public static function getTypes(): array
+    {
+        return [
+            self::PERCENTAGE,
+            self::AMOUNT,
+        ];
+    }
 }

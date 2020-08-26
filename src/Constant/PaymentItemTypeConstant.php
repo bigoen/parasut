@@ -7,7 +7,7 @@ namespace Bigoen\Parasut\Constant;
 /**
  * @author Şafak Saylam <safak@bigoen.com>
  */
-class PaymentItemType
+class PaymentItemTypeConstant
 {
     const PURCHASE_BILL = 'purchase_bill';
     const CANCELLED = 'cancelled';
@@ -17,4 +17,18 @@ class PaymentItemType
     const ESTIMATE = 'estimate';
     const RECURRING_INVOICE = 'recurring_invoice';
     const RECURRING_ESTIMATE = 'recurring_estimate';
+
+    public static function getTypes(): array
+    {
+        return [
+            self::PURCHASE_BILL,
+            self::CANCELLED,
+            self::RECURRING_PURCHASE_BILL,
+            self::REFUND,
+            self::INVOICE,
+            self::ESTIMATE,
+            self::RECURRING_INVOICE,
+            self::RECURRING_ESTIMATE,
+        ];
+    }
 }
