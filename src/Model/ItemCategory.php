@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Bigoen\Parasut\Model;
 
+use Bigoen\Parasut\Constant\DataTypeConstant;
 use DateTimeInterface;
 
 /**
@@ -66,7 +67,7 @@ class ItemCategory implements ObjectInterface
         return self::clearToArray([
             'data' => [
                 'id' => $this->id,
-                'type' => 'item_categories',
+                'type' => DataTypeConstant::ITEM_CATEGORIES,
                 'attributes' => [
                     'name' => $this->name,
                     'bg_color' => $this->bgColor,

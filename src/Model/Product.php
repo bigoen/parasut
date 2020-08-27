@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Bigoen\Parasut\Model;
 
+use Bigoen\Parasut\Constant\DataTypeConstant;
 use DateTimeInterface;
 
 /**
@@ -68,7 +69,7 @@ class Product implements ObjectInterface
         $object->updatedAt = self::createDateTime($attributes['updated_at']);
         $object->code = $attributes['code'];
         $object->name = $attributes['name'];
-        $object->vatRate = $attributes['vat_rate'];
+        $object->vatRate = (float) $attributes['vat_rate'];
         $object->salesExciseDutyType = $attributes['sales_excise_duty_type'];
         $object->salesExciseDutyCode = $attributes['sales_excise_duty_code'];
         $object->salesExciseDuty = (float) $attributes['sales_excise_duty'];
@@ -109,7 +110,7 @@ class Product implements ObjectInterface
         return self::clearToArray([
             'data' => [
                 'id' => $this->id,
-                'type' => 'products',
+                'type' => DataTypeConstant::PRODUCTS,
                 'attributes' => [
                     'code' => $this->code,
                     'name' => $this->name,

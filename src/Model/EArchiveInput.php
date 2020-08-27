@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Bigoen\Parasut\Model;
 
+use Bigoen\Parasut\Constant\DataTypeConstant;
+
 /**
  * @author Şafak Saylam <safak@bigoen.com>
  */
@@ -25,7 +27,7 @@ class EArchiveInput
     {
         return self::clearToArray([
             'id' => $this->id,
-            'type' => 'e_archives',
+            'type' => DataTypeConstant::E_ARCHIVES,
             'attributes' => [
                 'vat_withholding_code' => $this->vatWithholdingCode,
                 'vat_exemption_reason_code' => $this->vatExemptionReasonCode,

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Bigoen\Parasut\Model;
 
+use Bigoen\Parasut\Constant\DataTypeConstant;
 use DateTimeInterface;
 
 /**
@@ -25,7 +26,7 @@ class ContactTransactionInput
     {
         return self::clearToArray([
             'id' => $this->contactId,
-            'type' => 'transactions',
+            'type' => DataTypeConstant::TRANSACTIONS,
             'attributes' => [
                 'description' => $this->description,
                 'account_id' => $this->accountId,

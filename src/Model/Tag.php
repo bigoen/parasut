@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Bigoen\Parasut\Model;
 
+use Bigoen\Parasut\Constant\DataTypeConstant;
 use DateTimeInterface;
 
 /**
@@ -52,7 +53,7 @@ class Tag implements ObjectInterface
         return self::clearToArray([
             'data' => [
                 'id' => $this->id,
-                'type' => 'tags',
+                'type' => DataTypeConstant::TAGS,
                 'attributes' => [
                     'name' => $this->name,
                 ],

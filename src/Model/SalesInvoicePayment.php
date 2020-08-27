@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Bigoen\Parasut\Model;
 
+use Bigoen\Parasut\Constant\DataTypeConstant;
 use DateTimeInterface;
 
 /**
@@ -74,7 +75,7 @@ class SalesInvoicePayment implements ObjectInterface
     {
         return self::clearToArray([
             'id' => $this->id,
-            'type' => 'payments',
+            'type' => DataTypeConstant::PAYMENTS,
             'attributes' => [
                 'description' => $this->notes,
                 'account_id' => $this->accountId,

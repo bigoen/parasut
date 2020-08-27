@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Bigoen\Parasut\Model;
 
+use Bigoen\Parasut\Constant\DataTypeConstant;
 use DateTimeInterface;
 
 /**
@@ -112,7 +113,7 @@ class Contact implements ObjectInterface
     {
         return self::clearToArray([
             'id' => $this->id,
-            'type' => 'contacts',
+            'type' => DataTypeConstant::CONTACTS,
             'attributes' => [
                 'contact_type' => $this->contactType,
                 'name' => $this->name,
