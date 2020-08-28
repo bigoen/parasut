@@ -12,6 +12,7 @@ class DataTypeConstant
     const SALES_INVOICES = 'sales_invoices';
     const PAYMENTS = 'payments';
     const CONTACTS = 'contacts';
+    const CONTACT_PEOPLE = 'contact_people';
     const TRANSACTIONS = 'transactions';
     const PURCHASE_BILLS = 'purchase_bills';
     const BANK_FEES = 'bank_fees';
