@@ -35,5 +35,7 @@ class EInvoiceShowPdf
         $attributes = $data['attributes'];
         $object->url = $attributes['url'];
         $object->expiresAt = self::createDateTime($attributes['expires_at']);
+
+        return $object;
     }
 }
