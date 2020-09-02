@@ -33,9 +33,12 @@ class RelationshipsConverter
         return $object;
     }
 
-    public static function toArray(array $relationships): array
+    public static function toArray(?array $relationships): array
     {
         $arr = [];
+        if (is_null($relationships)) {
+            return $arr;
+        }
         foreach ($relationships as $key => $relationship) {
             if (!$relationship instanceof Relationship && !isset($relationship[0])) {
                 continue;
