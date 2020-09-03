@@ -7,18 +7,16 @@ namespace Bigoen\Parasut\Constant;
 /**
  * @author Şafak Saylam <safak@bigoen.com>
  */
-class AccountTypeConstant
+class ContactAccountTypeConstant
 {
-    const CASH = 'cash';
-    const BANK = 'bank';
-    const SYS = 'sys';
+    const CUSTOMER = 'customer';
+    const SUPPLIER = 'supplier';
 
     public static function getTypes(): array
     {
         return [
-            self::CASH,
-            self::BANK,
-            self::SYS,
+            self::CUSTOMER,
+            self::SUPPLIER,
         ];
     }
 }
