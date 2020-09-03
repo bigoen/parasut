@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Bigoen\Parasut\Model;
 
+use Bigoen\Parasut\Constant\DataTypeConstant;
+
 /**
  * @author Şafak Saylam <safak@bigoen.com>
  */
@@ -12,9 +14,9 @@ class Relationship implements ObjectInterface
     use ObjectTrait;
 
     const FILTERS_DETAIL_RELATIONS = [
-        'sales_invoice_details',
-        'purchase_bill_details',
-        'contact_people',
+        DataTypeConstant::SALES_INVOICE_DETAILS,
+        DataTypeConstant::PURCHASE_BILL_DETAILS,
+        DataTypeConstant::CONTACT_PEOPLE,
     ];
 
     public ?int $id = null;

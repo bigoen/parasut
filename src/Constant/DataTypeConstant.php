@@ -10,11 +10,13 @@ namespace Bigoen\Parasut\Constant;
 class DataTypeConstant
 {
     const SALES_INVOICES = 'sales_invoices';
+    const SALES_INVOICE_DETAILS = 'sales_invoice_details';
     const PAYMENTS = 'payments';
     const CONTACTS = 'contacts';
     const CONTACT_PEOPLE = 'contact_people';
     const TRANSACTIONS = 'transactions';
     const PURCHASE_BILLS = 'purchase_bills';
+    const PURCHASE_BILL_DETAILS = 'purchase_bill_details';
     const BANK_FEES = 'bank_fees';
     const SALARIES = 'salaries';
     const TAXES = 'taxes';
