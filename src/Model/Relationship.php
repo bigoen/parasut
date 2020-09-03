@@ -14,6 +14,7 @@ class Relationship implements ObjectInterface
     const FILTERS_DETAIL_RELATIONS = [
         'sales_invoice_details',
         'purchase_bill_details',
+        'contact_people',
     ];
 
     public ?int $id = null;
@@ -27,11 +28,11 @@ class Relationship implements ObjectInterface
         if (isset($arr['data'])) {
             $arr = $arr['data'];
         }
-        if (!isset($arr['id'], $arr['type'])) {
+        if (!isset($arr['type'])) {
             return null;
         }
         $object = new self();
-        $object->id = (int) $arr['id'];
+        $object->id = isset($arr['id']) ? (int) $arr['id'] : null;
         $object->type = $arr['type'];
         $object->attributes = $arr['attributes'] ?? [];
         $object->relationships = $arr['relationships'] ?? [];
