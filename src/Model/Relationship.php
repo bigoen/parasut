@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Bigoen\Parasut\Model;
 
-use Bigoen\Parasut\Constant\DataTypeConstant;
+use Bigoen\Contracts\Parasut\Constant\DataTypeConstant;
 
 /**
  * @author Şafak Saylam <safak@bigoen.com>
