@@ -108,29 +108,27 @@ class Product implements ObjectInterface
     public function toArray(): array
     {
         return self::clearToArray([
-            'data' => [
-                'id' => $this->id,
-                'type' => DataTypeConstant::PRODUCTS,
-                'attributes' => [
-                    'code' => $this->code,
-                    'name' => $this->name,
-                    'vat_rate' => $this->vatRate,
-                    'sales_excise_duty' => $this->salesExciseDuty,
-                    'sales_excise_duty_type' => $this->salesExciseDutyType,
-                    'purchase_excise_duty' => $this->purchaseExciseDuty,
-                    'purchase_excise_duty_type' => $this->purchaseExciseDutyType,
-                    'unit' => $this->unit,
-                    'communications_tax_rate' => $this->communicationsTaxRate,
-                    'archived' => $this->archived,
-                    'list_price' => $this->listPrice,
-                    'currency' => $this->currency,
-                    'buying_price' => $this->buyingPrice,
-                    'buying_currency' => $this->buyingCurrency,
-                    'inventory_tracking' => $this->inventoryTracking,
-                    'initial_stock_count' => $this->initialStockCount,
-                ],
-                'relationships' => RelationshipsConverter::toArray($this->relationships),
+            'id' => $this->id,
+            'type' => DataTypeConstant::PRODUCTS,
+            'attributes' => [
+                'code' => $this->code,
+                'name' => $this->name,
+                'vat_rate' => $this->vatRate,
+                'sales_excise_duty' => $this->salesExciseDuty,
+                'sales_excise_duty_type' => $this->salesExciseDutyType,
+                'purchase_excise_duty' => $this->purchaseExciseDuty,
+                'purchase_excise_duty_type' => $this->purchaseExciseDutyType,
+                'unit' => $this->unit,
+                'communications_tax_rate' => $this->communicationsTaxRate,
+                'archived' => $this->archived,
+                'list_price' => $this->listPrice,
+                'currency' => $this->currency,
+                'buying_price' => $this->buyingPrice,
+                'buying_currency' => $this->buyingCurrency,
+                'inventory_tracking' => $this->inventoryTracking,
+                'initial_stock_count' => $this->initialStockCount,
             ],
+            'relationships' => RelationshipsConverter::toArray($this->relationships),
         ]);
     }
 }

@@ -90,19 +90,17 @@ class Account implements ObjectInterface
     public function toArray(): array
     {
         return self::clearToArray([
-            'data' => [
-                'id' => $this->id,
-                'type' => DataTypeConstant::ACCOUNTS,
-                'attributes' => [
-                    'name' => $this->name,
-                    'currency' => $this->currency,
-                    'account_type' => $this->accountType,
-                    'bank_name' => $this->bankName,
-                    'bank_branch' => $this->bankBranch,
-                    'bank_account_no' => $this->bankAccountNo,
-                    'iban' => $this->iban,
-                    'archived' => $this->archived,
-                ],
+            'id' => $this->id,
+            'type' => DataTypeConstant::ACCOUNTS,
+            'attributes' => [
+                'name' => $this->name,
+                'currency' => $this->currency,
+                'account_type' => $this->accountType,
+                'bank_name' => $this->bankName,
+                'bank_branch' => $this->bankBranch,
+                'bank_account_no' => $this->bankAccountNo,
+                'iban' => $this->iban,
+                'archived' => $this->archived,
             ],
         ]);
     }

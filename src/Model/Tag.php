@@ -51,12 +51,10 @@ class Tag implements ObjectInterface
     public function toArray(): array
     {
         return self::clearToArray([
-            'data' => [
-                'id' => $this->id,
-                'type' => DataTypeConstant::TAGS,
-                'attributes' => [
-                    'name' => $this->name,
-                ],
+            'id' => $this->id,
+            'type' => DataTypeConstant::TAGS,
+            'attributes' => [
+                'name' => $this->name,
             ],
         ]);
     }

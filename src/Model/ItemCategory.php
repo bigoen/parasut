@@ -65,16 +65,14 @@ class ItemCategory implements ObjectInterface
     public function toArray(): array
     {
         return self::clearToArray([
-            'data' => [
-                'id' => $this->id,
-                'type' => DataTypeConstant::ITEM_CATEGORIES,
-                'attributes' => [
-                    'name' => $this->name,
-                    'bg_color' => $this->bgColor,
-                    'text_color' => $this->textColor,
-                    'category_type' => $this->categoryType,
-                    'parent_id' => $this->parentId,
-                ],
+            'id' => $this->id,
+            'type' => DataTypeConstant::ITEM_CATEGORIES,
+            'attributes' => [
+                'name' => $this->name,
+                'bg_color' => $this->bgColor,
+                'text_color' => $this->textColor,
+                'category_type' => $this->categoryType,
+                'parent_id' => $this->parentId,
             ],
         ]);
     }

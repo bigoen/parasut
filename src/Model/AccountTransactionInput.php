@@ -22,14 +22,12 @@ class AccountTransactionInput
     public function toArray(): array
     {
         return self::clearToArray([
-            'data' => [
-                'id' => $this->id,
-                'type' => DataTypeConstant::TRANSACTIONS,
-                'attributes' => [
-                    'date' => $this->date->format('Y-m-d'),
-                    'amount' => $this->amount,
-                    'description' => $this->description,
-                ],
+            'id' => $this->id,
+            'type' => DataTypeConstant::TRANSACTIONS,
+            'attributes' => [
+                'date' => $this->date->format('Y-m-d'),
+                'amount' => $this->amount,
+                'description' => $this->description,
             ],
         ]);
     }
