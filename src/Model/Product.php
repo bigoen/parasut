@@ -76,7 +76,6 @@ class Product implements ObjectInterface
         $object->purchaseExciseDutyType = $attributes['purchase_excise_duty_type'];
         $object->purchaseExciseDuty = (float) $attributes['purchase_excise_duty'];
         $object->communicationsTaxRate = (float) $attributes['communications_tax_rate'];
-        $object->unitSelection = $attributes['unit_selection'];
         $object->unit = $attributes['unit'];
         $object->archived = $attributes['archived'];
         $object->salesInvoiceDetailsCount = $attributes['sales_invoice_details_count'];
